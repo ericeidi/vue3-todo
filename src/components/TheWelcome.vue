@@ -2,44 +2,41 @@
 import { ref } from "vue";
 
 export default {
-  //** COMPOSITION API **/
   setup() {
     const tasks = ref([]);
-    const newTask = ref("");
-    const isCompleted = ref(false);
-
+    const newTask = ref({
+      name: "",
+      isCompleted: false,
+    });
     function addTask() {
-      tasks.value.push(newTask.value);
+      tasks.value.push({ ...newTask.value });
+      newTask.value.name = "";
+    }
+    function markTaskCompleted(task: any = "Banana") {
+      console.log("Complete task: ", task);
     }
     return {
       tasks,
       addTask,
+      markTaskCompleted,
       newTask,
     };
   },
-
-  //** OPTIONS API **/
-  // data() {
-  //   return {
-  //     tasks: [],
-  //     newTask: "",
-  //   };
-  // },
-  // // methods: {
-  // //   addTask() {
-  // //     this.tasks.push(this.newTask);
-  // //   },
-  // // },
 };
 </script>
 
 <template>
   <h1>Todo List</h1>
-  <input v-model="newTask" type="text" placeholder="Task Name" />
+  <input v-model="newTask.name" type="text" placeholder="Task Name" />
   <button @click="addTask()" type="submit">Add</button>
   <ul>
     <li v-for="(task, index) in tasks" :key="index">
-      {{ task }}
+      <input
+        @click="markTaskCompleted()"
+        type="checkbox"
+        :checked="task.isCompleted"
+      />
+      {{ task.name }}
     </li>
   </ul>
 </template>
