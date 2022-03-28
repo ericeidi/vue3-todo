@@ -9,17 +9,22 @@ export default {
       isCompleted: false,
     });
     function addTask() {
+      if (!newTask.value.name) return;
       tasks.value.push({ ...newTask.value });
       newTask.value.name = "";
     }
     function markTaskCompleted(position: number) {
       tasks.value[position].isCompleted = !tasks.value[position].isCompleted;
     }
+    function removeTask(index) {
+      tasks.value.splice(index, 1);
+    }
     return {
       tasks,
       addTask,
       markTaskCompleted,
       newTask,
+      removeTask,
     };
   },
 };
@@ -37,6 +42,7 @@ export default {
         :checked="task.isCompleted"
       />
       {{ task.name }}
+      <button @click="removeTask(index)">X</button>
     </li>
   </ul>
 </template>
