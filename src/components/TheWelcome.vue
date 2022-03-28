@@ -12,8 +12,8 @@ export default {
       tasks.value.push({ ...newTask.value });
       newTask.value.name = "";
     }
-    function markTaskCompleted(task: any = "Banana") {
-      console.log("Complete task: ", task);
+    function markTaskCompleted(position: number) {
+      tasks.value[position].isCompleted = !tasks.value[position].isCompleted;
     }
     return {
       tasks,
@@ -32,7 +32,7 @@ export default {
   <ul>
     <li v-for="(task, index) in tasks" :key="index">
       <input
-        @click="markTaskCompleted()"
+        @click="markTaskCompleted(index)"
         type="checkbox"
         :checked="task.isCompleted"
       />
