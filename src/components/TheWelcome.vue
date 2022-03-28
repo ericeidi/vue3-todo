@@ -4,12 +4,13 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      count: 1,
+      tasks: [],
+      newTask: "",
     };
   },
   methods: {
     printSomething() {
-      console.log("Passei aqui");
+      this.tasks.push(this.newTask);
     },
   },
 });
@@ -17,6 +18,11 @@ export default defineComponent({
 
 <template>
   <h1>Todo List</h1>
-  <input type="text" placeholder="Task Name" />
+  <input v-model="newTask" type="text" placeholder="Task Name" />
   <button @click="printSomething" type="submit">Add</button>
+  <ul>
+    <li v-for="(task, i) in tasks" :key="i">
+      {{ task }}
+    </li>
+  </ul>
 </template>
