@@ -31,18 +31,41 @@ export default {
 </script>
 
 <template>
-  <h1>Todo List</h1>
-  <input v-model="newTask.name" type="text" placeholder="Task Name" />
-  <button @click="addTask()" type="submit">Add</button>
-  <ul>
-    <li v-for="(task, index) in tasks" :key="index">
-      <input
-        @click="markTaskCompleted(index)"
-        type="checkbox"
-        :checked="task.isCompleted"
-      />
-      {{ task.name }}
-      <button @click="removeTask(index)">X</button>
-    </li>
-  </ul>
+  <div class="container">
+    <div class="todo">
+      <h1>Todo List</h1>
+      <input v-model="newTask.name" type="text" placeholder="Task Name" />
+      <button @click="addTask()" type="submit">Add</button>
+      <ul>
+        <li v-for="(task, index) in tasks" :key="index">
+          <input
+            @click="markTaskCompleted(index)"
+            type="checkbox"
+            :checked="task.isCompleted"
+          />
+          {{ task.name }}
+          <button @click="removeTask(index)">X</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #404040;
+}
+.todo {
+  background-color: #fff;
+  padding: 8px;
+}
+.todo input[type=text]{
+  min-width: 80%;
+  background-color: transparent;
+}
+</style>
