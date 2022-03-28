@@ -1,19 +1,35 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { ref } from "vue";
 
-export default defineComponent({
-  data() {
+export default {
+  //** COMPOSITION API **/
+  setup() {
+    const tasks = ref([]);
+    const newTask = ref("");
+
+    function addTask() {
+      tasks.value.push(newTask.value);
+    }
     return {
-      tasks: [],
-      newTask: "",
+      tasks,
+      addTask,
+      newTask,
     };
   },
-  methods: {
-    addTask() {
-      this.tasks.push(this.newTask);
-    },
-  },
-});
+
+  //** OPTIONS API **/
+  // data() {
+  //   return {
+  //     tasks: [],
+  //     newTask: "",
+  //   };
+  // },
+  // methods: {
+  //   addTask() {
+  //     this.tasks.push(this.newTask);
+  //   },
+  // },
+};
 </script>
 
 <template>
