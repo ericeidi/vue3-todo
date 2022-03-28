@@ -6,6 +6,7 @@ export default {
   setup() {
     const tasks = ref([]);
     const newTask = ref("");
+    const isCompleted = ref(false);
 
     function addTask() {
       tasks.value.push(newTask.value);
@@ -24,11 +25,11 @@ export default {
   //     newTask: "",
   //   };
   // },
-  // methods: {
-  //   addTask() {
-  //     this.tasks.push(this.newTask);
-  //   },
-  // },
+  // // methods: {
+  // //   addTask() {
+  // //     this.tasks.push(this.newTask);
+  // //   },
+  // // },
 };
 </script>
 
