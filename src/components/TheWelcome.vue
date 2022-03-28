@@ -4,4 +4,6 @@
 
 <template>
   <h1> Todo List</h1>
+  <input type="text" placeholder="Task Name" />
+  <button type="submit">Add</button>
 </template>
