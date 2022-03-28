@@ -9,7 +9,7 @@ export default defineComponent({
     };
   },
   methods: {
-    printSomething() {
+    addTask() {
       this.tasks.push(this.newTask);
     },
   },
@@ -19,9 +19,9 @@ export default defineComponent({
 <template>
   <h1>Todo List</h1>
   <input v-model="newTask" type="text" placeholder="Task Name" />
-  <button @click="printSomething" type="submit">Add</button>
+  <button @click="addTask()" type="submit">Add</button>
   <ul>
-    <li v-for="(task, i) in tasks" :key="i">
+    <li v-for="(task, index) in tasks" :key="index">
       {{ task }}
     </li>
   </ul>
